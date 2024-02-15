@@ -1,65 +1,96 @@
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import Button from "react-bootstrap/Button";
-import Card from "react-bootstrap/Card";
-import CartItemForm from "./CartItemForm";
-const productsArr = [
+import { useState } from "react";
+import {
+  Button,
+  ButtonGroup,
+  Col,
+  Container,
+  ListGroup,
+  Offcanvas,
+  Row,
+} from "react-bootstrap";
+
+const dummyArray = [
   {
     id: 1,
-    title: "Colors",
+    title: "black and white",
     price: 100,
     imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Album%201.png",
   },
-  {
-    id: 2,
-    title: "Black and white Colors",
-    price: 50,
-    imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Album%202.png",
-  },
-  {
-    id: 3,
-    title: "Yellow and Black Colors",
-    price: 70,
-    imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Album%203.png",
-  },
-  {
-    id: 4,
-    title: "Blue Color",
-    price: 100,
-    imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Album%204.png",
-  },
 ];
+
 const CartItem = (props) => {
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   return (
-    <section>
-      <Container fluid>
-        <div>
-          <h2 style={{ textAlign: "center" }}>Beautiful Colors</h2>
-        </div>
+    <div>
+      <Button variant="secondary" onClick={handleShow}>
+        <div>cart</div>
+        <div>5</div>
+      </Button>
+      <Container>
         <Row>
-          {productsArr.map((item) => {
+          {dummyArray.map((item) => {
             return (
-              <Col key={item.id}>
-                <div>
-                  <Card style={{ width: "23rem" }}>
-                    <Card.Body>
-                      <Card.Title style={{ textAlign: "center" }}>
-                        {item.title}
-                      </Card.Title>
-                      <Card.Text>
-                        <Card.Img variant="top" src={item.imageUrl} />
-                      </Card.Text>
-                      <CartItemForm price={item.price} />
-                    </Card.Body>
-                  </Card>
-                </div>
+              <Col>
+                <Offcanvas
+                  show={show}
+                  onHide={handleClose}
+                  placement="end"
+                  style={{ backgroundColor: "lightgray", minHeight: "100vh" }}
+                >
+                  <Offcanvas.Header closeButton>
+                    <Offcanvas.Title>
+                      --------------CARTITEMS------------
+                    </Offcanvas.Title>
+                  </Offcanvas.Header>
+                  <Container>
+                    <Row>
+                      <Col style={{ fontWeight: "bold" }}>Name</Col>
+                      <Col style={{ fontWeight: "bold" }}>Price</Col>
+                      <Col style={{ fontWeight: "bold" }}> Amount</Col>
+
+                      <Col style={{ fontWeight: "bold" }}>Actions</Col>
+                    </Row>
+                  </Container>
+                  <Offcanvas.Body>
+                    <Row>
+                      <Col style={{ fontWeight: "bold" }}>
+                        <ListGroup>
+                          <ListGroup.Item variant="dark">
+                            {item.title}
+                          </ListGroup.Item>
+                        </ListGroup>
+                      </Col>
+                      <Col style={{ fontWeight: "bold" }}>
+                        <ListGroup>
+                          <ListGroup.Item variant="dark">
+                            ${item.price}
+                          </ListGroup.Item>
+                        </ListGroup>
+                      </Col>
+                      <Col style={{ fontWeight: "bold" }}>
+                        <ListGroup>
+                          <ListGroup.Item variant="dark">10</ListGroup.Item>
+                        </ListGroup>
+                      </Col>
+                      <Col style={{ fontWeight: "bold" }}>
+                        <ButtonGroup aria-label="Basic example">
+                          <Button variant="secondary">+</Button>
+                          <Button variant="secondary">-</Button>
+                        </ButtonGroup>
+                      </Col>
+                    </Row>
+                  </Offcanvas.Body>
+                </Offcanvas>
               </Col>
             );
           })}
         </Row>
       </Container>
-    </section>
+    </div>
   );
 };
 export default CartItem;

@@ -1,11 +1,7 @@
 import { Button } from "react-bootstrap";
+import CartItem from "../Cart/CartItem";
 
 const CartButtonLayout = (props) => {
-  return (
-    <Button variant="secondary">
-      <div>CART</div>
-      <div>5</div>
-    </Button>
-  );
+  return <CartItem />;
 };
 export default CartButtonLayout;

@@ -1,8 +1,7 @@
 import { Button, Col, Container, Row } from "react-bootstrap";
 import Input from "../UI/Input";
-import { propTypes } from "react-bootstrap/esm/Image";
 
-const CartItemForm = (props) => {
+const ItemForm = (props) => {
   return (
     <div>
       <Container>
@@ -22,4 +21,4 @@ const CartItemForm = (props) => {
     </div>
   );
 };
-export default CartItemForm;
+export default ItemForm;

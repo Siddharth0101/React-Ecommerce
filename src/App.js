@@ -1,12 +1,12 @@
 import "./App.css";
-import Cart from "./components/Cart/Cart";
+import Item from "./components/Item/Item";
 import NavbarLayout from "./components/Layout/NavbarLayout";
 
 function App() {
   return (
     <div style={{ backgroundColor: "grey", minHeight: "100vh" }}>
       <NavbarLayout />
-      <Cart />
+      <Item />
     </div>
   );
 }
